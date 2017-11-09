@@ -1,0 +1,28 @@
+---
+title: "Universities in Singapore"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Nov 09, 2017
+
+```{r}
+library(leaflet)
+
+df <- data.frame(
+  lat=c(1.3007238, 1.3405793, 1.2961798, 1.2965676, 1.3483099),
+  lng=c(103.7780559, 103.9610103, 103.7754397, 103.8499243, 103.6809406)
+)
+sites <- c(
+  "<a href='https://www.singaporetech.edu.sg/' target='_blank'>Singapore Institute of Technology</a>",
+  "<a href='https://sutd.edu.sg/' target='_blank'>Singapore University of Technology and Design</a>",
+  "<a href='http://www.nus.edu.sg/' target='_blank'>National University of Singapore</a>",
+  "<a href='https://www.smu.edu.sg/' target='_blank'>Singapore Management University</a>",
+  "<a href='http://www.ntu.edu.sg/' target='_blank'>Nanyang Technological University</a>"
+)
+df %>% leaflet() %>% addTiles() %>% addMarkers(popup=sites) %>% addProviderTiles(providers$OpenStreetMap)
+```
+
